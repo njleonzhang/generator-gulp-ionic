@@ -9,7 +9,8 @@
     "url": "https://github.com/njleonzhang"
   },
   "files": [
-    "generators"
+    "generators/app",
+    "generators/service"
   ],
   "main": "generators/app/index.js",
   "keywords": [
@@ -21,7 +22,8 @@
     "chalk": "^1.0.0",
     "yosay": "^1.0.0",
     "glob": "^7.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "underscore.string": "^3.3.4"
   },
   "devDependencies": {
     "eslint": "^2.1.0",
