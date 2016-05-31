@@ -1,5 +1,7 @@
-# generator-gulp-ionic [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> test
+# generator-gulp-ionic
+
+> This generator is inspired by [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme) and [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular). It has full function of [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), at the same time, has the project structure of [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular).
+
 
 ## Installation
 
@@ -15,6 +17,52 @@ Then generate your new project:
 ```bash
 yo gulp-ionic
 ```
+
+## Usage of the generated project. 
+
+* For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
+* For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), 
+except we add a gulp option `-server or -s`
+
+There is a file named `ENV.json` at the root folder, whose content should be like this:
+
+```
+    {
+      "dev": {
+        "ENVconfig": {
+          "serverBase": "0.0.0.0:8888"
+        }
+      },
+      "production": {
+        "ENVconfig": {
+          "serverBase": "http://hipsterjesus.com/"
+        }
+      }
+    }
+```
+
+A service is generated according to this json file.  
+ 
+```
+    angular.module("ENV", [])
+    .constant("ENVconfig", {"serverBase":"http://hipsterjesus.com/"});
+
+```
+
+If you start the server by command `gulp`, we consider you are in develop mode, `"dev"` property in the json file will be used to generate angular `ENVconfig` module.
+If you start the server by command `gulp -run, gulp -build`, we consider you are in release mode, `produttion` property in the json will be used to generate angular `ENVconfig` module.
+
+Of course, If you can revise `ENV.json` to your own config. But sometimes, we need to change `serverBase` frequently when we make some test.
+In this situation, you can use `-server or -s` option,
+
+* `gulp -s www.xxx.com`         // debug mode with special serverBase
+* `gulp -r -s www.xxx.com`      // production mode with special serverBase
+
+
+### ionic plugin installation according to package.json
+
+`ionic state reset`
+
 
 ## Getting To Know Yeoman
 
