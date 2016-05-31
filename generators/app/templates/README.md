@@ -1,95 +1,84 @@
-#ZRSM
+# generator-gulp-ionic
 
-本工程基于generator-ionic-gulp生成, 并按照gulp-angular的代码树风格进行了修改.
-
-[generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme)
-
-[generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
-
-配置开发环境的步骤:
-
-# 1. 安装gulp
-sudo npm install -g gulp
-
-# 2. 进入根目录,安装npm依赖:
-npm install
-
-# 3. 启动项目
-gulp
-
-此时开发的web站点将通过默认浏览器打开, livereload也生效了.
-修改代码的过程中,可以实时的在浏览器里看到变化.
-
-项目源码结构:
-
-app/src/:
-
-commonStyles 里是一些公共的scss, 每个页面都会用到的.
-component 里的每一个目录是一个组件(service, directive或者filter)
-其他目录(例如login),则是一个一个的页面.
+> This generator is inspired by [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme) and [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular). It has full function of [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), at the same time, has the project structure of [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular).
 
 
-请尽量不要引入其他的第三方样式库, 因为有可能和ionic的样式冲突, 关于ionic:
-http://ionicframework.com/
+## Installation
+
+First, install [Yeoman](http://yeoman.io) and generator-gulp-ionic using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+
+```bash
+npm install -g yo
+npm install -g generator-gulp-ionic
+```
+
+Then generate your new project:
+
+```bash
+yo gulp-ionic
+```
+
+## Usage of the generated project. 
+
+* For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
+* For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), 
+except we add a gulp option `-server or -s`
+
+There is a file named `ENV.json` at the root folder, whose content should be like this:
+
+```
+    {
+      "dev": {
+        "ENVconfig": {
+          "serverBase": "0.0.0.0:8888"
+        }
+      },
+      "production": {
+        "ENVconfig": {
+          "serverBase": "http://hipsterjesus.com/"
+        }
+      }
+    }
+```
+
+A service is generated according to this json file.  
+ 
+```
+    angular.module("ENV", [])
+    .constant("ENVconfig", {"serverBase":"http://hipsterjesus.com/"});
+
+```
+
+If you start the server by command `gulp`, we consider you are in develop mode, `"dev"` property in the json file will be used to generate angular `ENVconfig` module.
+If you start the server by command `gulp -run, gulp -build`, we consider you are in release mode, `produttion` property in the json will be used to generate angular `ENVconfig` module.
+
+Of course, If you can revise `ENV.json` to your own config. But sometimes, we need to change `serverBase` frequently when we make some test.
+In this situation, you can use `-server or -s` option,
+
+* `gulp -s www.xxx.com`         // debug mode with special serverBase
+* `gulp -r -s www.xxx.com`      // production mode with special serverBase
 
 
-使用说明:
-基于https://github.com/tmaximini/generator-ionic-gulp#readme
-
-
-#### Development mode
-
-By running just `gulp`, we start our development build process, consisting of:
-
-- compiling, concatenating, auto-prefixing of all `.scss` files required by `app/styles/main.scss`
-- creating `vendor.js` file from ~~external sources defined in `./vendor.json`~~ from `bower.json` using `wiredep`
-- linting all `*.js` files `app/scripts` (or src/ if using browserify), see `.jshintrc` for ruleset
-- automatically inject sources into `index.html` so we don't have to add / remove sources manually
-- build everything into `.tmp` folder (also gitignored)
-- start local development server and serve from `.tmp`
-- start watchers to automatically lint javascript source files, compile scss and reload browser on changes
-
-dev模式下server默认地址是0.0.0.0:8888  [ENV.json里定义]
-如果想使用其他地址, 则可以修改ENV.json,或者用-s参数
-
-example: 
-
-`gulp -s 0.0.0.0:8888`
-`gulp -s https://www.baisiyi365.com`
-
-
-#### Build mode
-
-By running just `gulp --build` or short `gulp -b`, we start gulp in build mode
-
-- concat all `.js` sources into single `app.js` file
-- version `main.css` and `app.js`
-- build everything into `www`
-- remove debugs messages such as `console.log` or `alert` with passing `--release`
-
-build mode下server地址默认是www.baisiyi365.com. 
-如果想更改server地址, 一样可以使用[-s] 
-
-例如:
-`gulp -b -s 10.32.11.101:8888`
-
-
-#### Run
-
-By running `gulp -r <platform>`, we can run our app on a connected device
-
-- <platform> can be either `ios` or `android`, defaults to `ios`
-- It will run the `gulp --build` before, so we have a fresh version to test
-
-### splash screens and icons
-
-Replace `splash.png` and `icon.png` inside `/resources`. Then run `ionic resources`. If you only want to regenerate icons or splashs, you can run `gulp icon` or `gulp splash` shorthand.
-
-### customizing themes
-
-Just override any Ionic variables in `app/styles/ionic-styles.scss`.
-
-   
-### ionic plugin install according to package.json
+### ionic plugin installation according to package.json
 
 `ionic state reset`
+
+
+## Getting To Know Yeoman
+
+ * Yeoman has a heart of gold.
+ * Yeoman is a person with feelings and opinions, but is very easy to work with.
+ * Yeoman can be too opinionated at times but is easily convinced not to be.
+ * Feel free to [learn more about Yeoman](http://yeoman.io/).
+
+## License
+
+Apache-2.0 © [njleonzhang](https://github.com/njleonzhang)
+
+
+[npm-image]: https://badge.fury.io/js/generator-gulp-ionic.svg
+[npm-url]: https://npmjs.org/package/generator-gulp-ionic
+[travis-image]: https://travis-ci.org//generator-gulp-ionic.svg?branch=master
+[travis-url]: https://travis-ci.org//generator-gulp-ionic
+[daviddm-image]: https://david-dm.org//generator-gulp-ionic.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org//generator-gulp-ionic
