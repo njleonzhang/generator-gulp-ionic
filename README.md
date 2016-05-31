@@ -20,9 +20,9 @@ yo gulp-ionic
 
 ## Usage of the generated project. 
 
-for The structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
-for gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), 
-except we add a gulp option `[server]`
+* For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
+* For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), 
+except we add a gulp option `-server or -s`
 
 There is a file named `ENV.json` at the root folder, whose content should be like this:
 
@@ -53,7 +53,7 @@ If you start the server by command `gulp`, we consider you are in develop mode, 
 If you start the server by command `gulp -run, gulp -build`, we consider you are in release mode, `produttion` property in the json will be used to generate angular `ENVconfig` module.
 
 Of course, If you can revise `ENV.json` to your own config. But sometimes, we need to change `serverBase` frequently when we make some test.
-In this situation, you can use [-s] option,
+In this situation, you can use `-server or -s` option,
 
 * `gulp -s www.xxx.com`         // debug mode with special serverBase
 * `gulp -r -s www.xxx.com`      // production mode with special serverBase
