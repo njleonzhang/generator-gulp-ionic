@@ -1,7 +1,7 @@
 {
   "name": "generator-gulp-ionic",
   "version": "0.0.0",
-  "description": "test",
+  "description": "a yoeman generator inspired by generator-ionic-gulp and generator-gulp-angular, ionic generator with gulp-angular project structure",
   "homepage": "",
   "author": {
     "name": "njleonzhang",
