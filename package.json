@@ -20,7 +20,7 @@
     "chalk": "^1.0.0",
     "yosay": "^1.0.0",
     "glob": "^7.0.3",
-    "path": "^0.12.7",
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint": "^2.1.0",
