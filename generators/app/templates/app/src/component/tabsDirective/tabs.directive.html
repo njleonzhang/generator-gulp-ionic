@@ -1,0 +1,34 @@
+<div class="bsy-tab">
+    <style type="text/css">
+
+        .bsy-tab .button-bar div{
+            background: #F8F8F8;
+        }
+
+        .bsy-tab .button-bar div.active{
+            background: white;
+            color: #0088CC;
+        }
+
+        .button-bar > .button:first-child, .button-bar > .button:last-child{
+            border-radius: 0;
+        }
+
+        .button.active, .button.activated{
+            box-shadow: none !important;
+        }
+    </style>
+
+    <div class="button-bar bar-light">
+        <div class="button"
+             ng-repeat="tab in tabset.tabs"
+             ng-class="{'active': tab.active}"
+             ng-click="tabset.select(tab)">
+            {{tab.heading}}
+        </div>
+    </div>
+
+    <ng-transclude>
+
+    </ng-transclude>
+</div>

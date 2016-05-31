@@ -1,0 +1,17 @@
+{
+  "name": "<%= appName %>",
+  "author": "<%= userName %> <<%= userEmail %>>",
+  "private": "true",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "jquery": "^1.11.3",
+    "angular": "^1.4.8",
+    "ngCordova": "^0.1.23-alpha",
+    "angular-resource": "^1.4.8",
+    "ionic": "^1.2.1"
+  },
+  "resolutions": {
+    "angular": "^1.4.8"
+  }
+}
