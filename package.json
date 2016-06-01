@@ -11,6 +11,10 @@
   "files": [
     "generators/app",
     "generators/service"
+    "generators/factory"
+    "generators/provider"
+    "generators/value"
+    "generators/constant"
   ],
   "main": "generators/app/index.js",
   "keywords": [
