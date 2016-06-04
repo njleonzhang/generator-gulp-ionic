@@ -1,6 +1,6 @@
 {
   "name": "generator-gulp-ionic",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a yoeman generator inspired by generator-ionic-gulp and generator-gulp-angular, ionic generator with gulp-angular project structure",
   "homepage": "https://github.com/njleonzhang/generator-gulp-ionic",
   "author": {
@@ -10,16 +10,18 @@
   },
   "files": [
     "generators/app",
-    "generators/service"
-    "generators/factory"
-    "generators/provider"
-    "generators/value"
+    "generators/service",
+    "generators/factory",
+    "generators/provider",
+    "generators/value",
     "generators/constant"
   ],
   "main": "generators/app/index.js",
   "keywords": [
     "yeoman-generator",
-    "ionic"
+    "ionic",
+    "gulp-ionic",
+    "gulp"
   ],
   "dependencies": {
     "yeoman-generator": "^0.23.0",

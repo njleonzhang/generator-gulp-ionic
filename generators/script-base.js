@@ -7,7 +7,7 @@ var chalk = require('chalk');
 var _ = require('underscore.string');
 
 var Generator = module.exports = function Generator() {
-  yeoman.generators.NamedBase.apply(this, arguments);
+  yeoman.NamedBase.apply(this, arguments);
 
   var bowerJson = {};
 
@@ -79,7 +79,7 @@ var Generator = module.exports = function Generator() {
   this.sourceRoot(path.join(__dirname, sourceRoot));
 };
 
-util.inherits(Generator, yeoman.generators.NamedBase);
+util.inherits(Generator, yeoman.NamedBase);
 
 Generator.prototype.appTemplate = function (src, dest) {
   yeoman.Base.prototype.template.apply(this, [
@@ -133,7 +133,9 @@ Generator.prototype.generateSourceAndTest = function (appTemplate, testTemplate,
 
   this.appTemplate(appTemplate, path.join('src', targetDirectory, this.name));
   this.testTemplate(testTemplate, path.join(targetDirectory, this.name));
-  if (!skipAdd) {
-    this.addScriptToIndex(path.join(targetDirectory, this.name));
-  }
+
+  // in our structure, we don't need to add script to index.html
+  //if (!skipAdd) {
+  //  this.addScriptToIndex(path.join(targetDirectory, this.name));
+  //}
 };

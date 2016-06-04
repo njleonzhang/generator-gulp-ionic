@@ -16,8 +16,6 @@ module.exports = yeoman.Base.extend({
     var files = glob.sync('**/*.*', { dot: true, cwd: root });
     files.push('helpers/emulateios');
 
-    console.log('helpers/emulateios');
-
     for (var i = 0; i < files.length; i++) {
       var f = files[i];
       var src = path.join(root, f);
