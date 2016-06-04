@@ -1,6 +1,6 @@
 # generator-gulp-ionic
 
-> This generator is inspired by [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme) and [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular). It has full function of [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), at the same time, has the project structure of [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular).
+> This generator is inspired by [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme) , [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) and [generator-angular](https://github.com/yeoman/generator-angular). It has full function of [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), at the same time, has the project structure of [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular). It also has service generators of [generator-angular](https://github.com/yeoman/generator-angular).
 
 
 ## Installation
@@ -18,10 +18,27 @@ Then generate your new project:
 yo gulp-ionic
 ```
 
-## Usage of the generated project. 
+Generate your new service:
+
+```bash
+yo gulp-ionic:service myService
+```
+
+Produces `src/app/scripts/services/myService.js`:
+
+```javascript
+angular.module('myMod').service('MyService', function () {
+  // ...
+});
+```
+
+You can also do `yo gulp-ionic:factory`, `yo gulp-ionic:provider`, `yo gulp-ionic:value`, and `yo gulp-ionic:constant` for other types of services.
+
+
+## Usage of the generated project.
 
 * For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
-* For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), 
+* For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme),
 except we add a gulp option `-server or -s`
 
 There is a file named `ENV.json` at the root folder, whose content should be like this:
@@ -42,7 +59,7 @@ There is a file named `ENV.json` at the root folder, whose content should be lik
 ```
 
 A service is generated according to this json file.  
- 
+
 ```
     angular.module("ENV", [])
     .constant("ENVconfig", {"serverBase":"http://hipsterjesus.com/"});
@@ -82,3 +99,5 @@ Apache-2.0 © [njleonzhang](https://github.com/njleonzhang)
 [travis-url]: https://travis-ci.org//generator-gulp-ionic
 [daviddm-image]: https://david-dm.org//generator-gulp-ionic.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org//generator-gulp-ionic
+
+
