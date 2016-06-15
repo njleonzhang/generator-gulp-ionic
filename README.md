@@ -75,11 +75,22 @@ In this situation, you can use `-server or -s` option,
 * `gulp -s www.xxx.com`         // debug mode with special serverBase
 * `gulp -r -s www.xxx.com`      // production mode with special serverBase
 
+## steps to deploy the app to device
+1. build the app, which will generaor release app in folder`www`. 
 
-### ionic plugin installation according to package.json
+  `gulp -b`
+  
+2. install plugins according to package.json
+  
+  `ionic state reset`
 
-`ionic state reset`
+3. generate icon and splash
 
+  `ionic resources`
+  
+4. build and deploy the app to device/simulator
+  
+  `ionic run android|ios`
 
 ## Getting To Know Yeoman
 
