@@ -88,7 +88,11 @@ In this situation, you can use `-server or -s` option,
 
   `ionic resources`
   
-4. build and deploy the app to device/simulator
+4. add android and ios project
+
+  `ionic platform add android|ios`
+  
+5. build and deploy the app to device/simulator
   
   `ionic run android|ios`
 
