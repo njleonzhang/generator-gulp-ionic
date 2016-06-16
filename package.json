@@ -10,11 +10,14 @@
   },
   "files": [
     "generators/app",
-    "generators/service",
+    "generators/constant",
     "generators/factory",
     "generators/provider",
+    "generators/service",
+    "generators/templates",
     "generators/value",
-    "generators/constant"
+    "generators/script-base.js",
+    "generators/util.js"
   ],
   "main": "generators/app/index.js",
   "keywords": [
