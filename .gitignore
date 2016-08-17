@@ -1,0 +1,22 @@
+# OSX
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+
+# Vim
+*~
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+# tags
+
+
+# JetBrains IDEs
+.idea
+*.iws
+
+#Web
+node_modules/
+dist/
+bower_components/

@@ -21,38 +21,7 @@ angular.module('<%= appName %>', ['ionic', 'ngAnimate', 'ngCordova', 'ENV'])
 
 
   // config
-  .config(function ($stateProvider, $urlRouterProvider) {
-    // Application routing
-    $stateProvider
-      .state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'src/main/main.html',
-        controller: 'mainCtrl'
-      })
-      .state('app.home', {
-        url: '/home',
-        cache: true,
-        views: {
-          'viewContent': {
-            templateUrl: 'src/home/home.html',
-            controller: 'homeCtrl'
-          }
-        }
-      })
-      .state('app.settings', {
-        url: '/settings',
-        cache: true,
-        views: {
-          'viewContent': {
-            templateUrl: 'src/setting/settings.html',
-            controller: 'settingCtrl'
-          }
-        }
-      });
-
-
+  .config(function ($urlRouterProvider) {
     // redirects to default route for undefined routes
     $urlRouterProvider.otherwise('/app/home');
   });
-
