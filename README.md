@@ -13,7 +13,7 @@ npm install -g generator-gulp-ionic
 
 Then generate your new project:
 
-```bash
+```
 yo gulp-ionic
 ```
 
@@ -34,8 +34,15 @@ angular.module('myMod').service('MyService', function () {
 You can also do `yo gulp-ionic:factory`, `yo gulp-ionic:provider`, `yo gulp-ionic:value`, and `yo gulp-ionic:constant` for other types of services.!
 
 ## Usage of the generated project.
+<div style="text-align: center">
+<img src="/assets/architecture.png" width="250">
+</div>
 
-* For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
+* All source code is under `app` folder.
+For a page or directive, html, js and scss is organized in same folder.
+For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
+
+
 * For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme),
 except we add a gulp option `-server or -s`
 
