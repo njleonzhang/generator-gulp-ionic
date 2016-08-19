@@ -18,6 +18,9 @@ var ripple = require('ripple-emulator');
 var wiredep = require('wiredep');
 var gulpNgConfig = require('gulp-ng-config');
 var json = require('json-file');
+var series = require('stream-series');
+var notifier = require('node-notifier');
+
 
 /**
  * Parse arguments
@@ -65,6 +68,8 @@ if (run === true) {
   run = 'ios';
 }
 
+var plumberErrorHandler = plugins.notify.onError("Error: <%= error.message %>");
+
 // global error handler
 var errorHandler = function (error) {
   if (build) {
@@ -91,6 +96,10 @@ gulp.task('styles', function () {
       'app/src/**/*.scss'
     ]))
     .pipe(plugins.concat('bundle-temp.scss'))
+    .pipe(plugins.plumber({errorHandler: function(error) {
+      sassStream.emit('end')
+      notifier.notify({title: 'sass error', message: error.message});
+    }}))
     .pipe(plugins.sass(options))
     .on('error', function (err) {
       console.log('err: ', err);
@@ -108,7 +117,7 @@ gulp.task('styles', function () {
       beep();
     });
 
-  return streamqueue({objectMode: true}, ionicStream, sassStream)
+  return series(ionicStream, sassStream)
     .pipe(plugins.autoprefixer('last 1 Chrome version', 'last 3 iOS versions', 'last 3 Android versions'))
     .pipe(plugins.concat('main.css'))
     .pipe(plugins.if(build, plugins.stripCssComments()))
@@ -145,8 +154,10 @@ gulp.task('scripts', function () {
     .pipe(plugins.if(!build, plugins.changed(dest)));
 
   return streamqueue({objectMode: true}, scriptStream, templateStream)
+    .pipe(plugins.plumber({errorHandler: plumberErrorHandler}))
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
     .pipe(plugins.if(build, plugins.ngAnnotate()))
+    .pipe(plugins.babel({presets: ['es2015']}))
     .pipe(plugins.if(stripDebug, plugins.stripDebug()))
     .pipe(plugins.if(build, plugins.concat('app.js')))
     .pipe(plugins.if(build && !emulate, plugins.uglify()))
@@ -268,7 +279,6 @@ gulp.task('serve', function () {
   app.use(express.static(targetDir));
 
   app.listen(port);
-  open('http://localhost:' + port + '/');
 });
 
 // ionic emulate wrapper
@@ -397,4 +407,3 @@ gulp.task('default', function (done) {
     run ? 'ionic:run' : 'noop',
     done);
 });
-

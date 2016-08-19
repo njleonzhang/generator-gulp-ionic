@@ -6,9 +6,9 @@
  */
 
 angular.module('<%= appName %>')
-  .controller('homeCtrl', function($scope, exampleService) {
+  .controller('homeCtrl', ($scope, exampleService) => {
     $scope.myHTML = null;
-    
+
     // just an example...
     $scope.fetchRandomText = function () {
       exampleService.doSomethingAsync()
@@ -22,7 +22,7 @@ angular.module('<%= appName %>')
 
     $scope.fetchRandomText();
   })
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(($stateProvider, $urlRouterProvider) => {
     // Application routing
     $stateProvider
       .state('app.home', {
