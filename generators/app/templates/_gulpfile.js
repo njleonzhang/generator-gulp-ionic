@@ -68,8 +68,6 @@ if (run === true) {
   run = 'ios';
 }
 
-var plumberErrorHandler = plugins.notify.onError("Error: <%= error.message %>");
-
 // global error handler
 var errorHandler = function (error) {
   if (build) {
@@ -154,7 +152,10 @@ gulp.task('scripts', function () {
     .pipe(plugins.if(!build, plugins.changed(dest)));
 
   return streamqueue({objectMode: true}, scriptStream, templateStream)
-    .pipe(plugins.plumber({errorHandler: plumberErrorHandler}))
+    .pipe(plugins.plumber({errorHandler: function(error) {
+      this.emit('end')
+      notifier.notify({title: 'sass error', message: error.message});
+    }}))
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
     .pipe(plugins.if(build, plugins.ngAnnotate()))
     .pipe(plugins.babel({presets: ['es2015']}))
