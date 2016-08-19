@@ -9,7 +9,7 @@ First, install [Yeoman](http://yeoman.io) and generator-gulp-ionic using  [npm](
 ```bash
 npm install -g yo
 npm install -g generator-gulp-ionic
-``
+```
 
 Then generate your new project:
 
