@@ -1,16 +1,15 @@
 # generator-gulp-ionic
 
-> This generator is inspired by [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme) , [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular) and [generator-angular](https://github.com/yeoman/generator-angular). It has full function of [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), at the same time, has the project structure of [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular). It also has service generators of [generator-angular](https://github.com/yeoman/generator-angular).
-
+> Ionic generator organizes html, js and scss by feature, supports ES6, livereload, also provide service generator command.
 
 ## Installation
 
-First, install [Yeoman](http://yeoman.io) and generator-gulp-ionic using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-gulp-ionic using  [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
 npm install -g generator-gulp-ionic
-```
+``
 
 Then generate your new project:
 
@@ -32,8 +31,7 @@ angular.module('myMod').service('MyService', function () {
 });
 ```
 
-You can also do `yo gulp-ionic:factory`, `yo gulp-ionic:provider`, `yo gulp-ionic:value`, and `yo gulp-ionic:constant` for other types of services.
-
+You can also do `yo gulp-ionic:factory`, `yo gulp-ionic:provider`, `yo gulp-ionic:value`, and `yo gulp-ionic:constant` for other types of services.!
 
 ## Usage of the generated project.
 
@@ -76,25 +74,30 @@ In this situation, you can use `-server or -s` option,
 * `gulp -r -s www.xxx.com`      // production mode with special serverBase
 
 ## steps to deploy the app to device
-1. build the app, which will generaor release app in folder`www`. 
+1. build the app, which will generaor release app in folder`www`.
 
   `gulp -b`
-  
+
 2. install plugins according to package.json
-  
+
   `ionic state reset`
 
 3. generate icon and splash
 
   `ionic resources`
-  
+
 4. add android and ios project
 
   `ionic platform add android|ios`
-  
+
 5. build and deploy the app to device/simulator
-  
+
   `ionic run android|ios`
+
+## inspired by
+ [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme)  
+ [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
+  [generator-angular](https://github.com/yeoman/generator-angular).
 
 ## Getting To Know Yeoman
 
@@ -106,13 +109,3 @@ In this situation, you can use `-server or -s` option,
 ## License
 
 Apache-2.0 © [njleonzhang](https://github.com/njleonzhang)
-
-
-[npm-image]: https://badge.fury.io/js/generator-gulp-ionic.svg
-[npm-url]: https://npmjs.org/package/generator-gulp-ionic
-[travis-image]: https://travis-ci.org//generator-gulp-ionic.svg?branch=master
-[travis-url]: https://travis-ci.org//generator-gulp-ionic
-[daviddm-image]: https://david-dm.org//generator-gulp-ionic.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org//generator-gulp-ionic
-
-
