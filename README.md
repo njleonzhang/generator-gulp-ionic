@@ -103,8 +103,10 @@ In this situation, you can use `-server or -s` option,
 
 ## inspired by
  [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme)  
+ 
  [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
-  [generator-angular](https://github.com/yeoman/generator-angular).
+ 
+ [generator-angular](https://github.com/yeoman/generator-angular).
 
 ## Getting To Know Yeoman
 
