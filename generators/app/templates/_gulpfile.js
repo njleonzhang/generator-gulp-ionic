@@ -280,6 +280,7 @@ gulp.task('serve', function () {
   app.use(express.static(targetDir));
 
   app.listen(port);
+  console.log('server start on port: ' + port);
 });
 
 // ionic emulate wrapper

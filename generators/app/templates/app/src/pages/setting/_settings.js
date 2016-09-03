@@ -18,7 +18,7 @@ angular.module('<%= appName %>')
         cache: true,
         views: {
           'viewContent': {
-            templateUrl: 'src/setting/settings.html',
+            templateUrl: 'src/pages/setting/settings.html',
             controller: 'settingCtrl'
           }
         }

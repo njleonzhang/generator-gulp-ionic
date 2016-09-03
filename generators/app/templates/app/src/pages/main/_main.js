@@ -16,7 +16,7 @@ angular.module('<%= appName %>')
       .state('app', {
         url: '/app',
         abstract: true,
-        templateUrl: 'src/main/main.html',
+        templateUrl: 'src/pages/main/main.html',
         controller: 'mainCtrl'
       })
   });
