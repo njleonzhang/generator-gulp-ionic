@@ -7,9 +7,8 @@
  * # exampleService
  */
 
-
 angular.module('<%= appName %>')
-  .factory('exampleService', ['$http',
+  .factory('example', ['$http',
     '$timeout',
     '$q',
     'ENVconfig',
@@ -44,4 +43,3 @@ angular.module('<%= appName %>')
         fetchSomethingFromServer: fetchSomethingFromServer
       };
     }])
-

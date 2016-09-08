@@ -10,7 +10,7 @@ angular.module('<%= appName %>')
 
   })
 
-  .config(function ($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider) {
     // Application routing
     $stateProvider
       .state('app.settings', {

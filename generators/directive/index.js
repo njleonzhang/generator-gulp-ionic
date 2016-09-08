@@ -4,7 +4,7 @@ var yeoman = require('yeoman-generator');
 var generatorConfig = require('../generator-base');
 
 generatorConfig.writing = function () {
-  this._processDirectory('', 'app/src/components/services/',
+  this._processDirectory('', 'app/src/components/directives/',
     {
       cameledName: this.componentName,
       scriptAppName: this._getScriptAppName()

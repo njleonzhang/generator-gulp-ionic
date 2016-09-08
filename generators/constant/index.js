@@ -1,19 +1,14 @@
 'use strict';
-var util = require('util');
-var ScriptBase = require('../script-base.js');
+var yeoman = require('yeoman-generator');
 
+var generatorConfig = require('../generator-base');
 
-var Generator = module.exports = function Generator() {
-  ScriptBase.apply(this, arguments);
-};
+generatorConfig.writing = function () {
+  this._processDirectory('', 'app/src/components/constants/',
+    {
+      cameledName: this.componentName,
+      scriptAppName: this._getScriptAppName()
+    });
+}
 
-util.inherits(Generator, ScriptBase);
-
-Generator.prototype.createServiceFiles = function createServiceFiles() {
-  this.generateSourceAndTest(
-    'service/constant',
-    'spec/service',
-    'services',
-    this.options['skip-add'] || false
-  );
-};
+module.exports = yeoman.Base.extend(generatorConfig);

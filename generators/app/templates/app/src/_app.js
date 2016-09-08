@@ -4,12 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('<%= appName %>', ['ionic', 'ngAnimate', 'ngCordova', 'ENV'])
-
-  .run( [
+  .run([
     '$ionicPlatform',
 
-    function( $ionicPlatform )
-    {
+    function($ionicPlatform) {
 
       $ionicPlatform.ready(function() {
         // save to use plugins here
@@ -17,11 +15,12 @@ angular.module('<%= appName %>', ['ionic', 'ngAnimate', 'ngCordova', 'ENV'])
 
       // add possible global event handlers here
 
-    } ] )
+    }
+  ])
 
 
   // config
-  .config(function ($urlRouterProvider) {
+  .config(function($urlRouterProvider) {
     // redirects to default route for undefined routes
     $urlRouterProvider.otherwise('/app/home');
   });

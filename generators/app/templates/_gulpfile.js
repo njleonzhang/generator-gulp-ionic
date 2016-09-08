@@ -21,7 +21,6 @@ var json = require('json-file');
 var series = require('stream-series');
 var notifier = require('node-notifier');
 
-
 /**
  * Parse arguments
  */
@@ -344,21 +343,12 @@ gulp.task('watchers', function () {
 gulp.task('noop', function () {
 });
 
+var configPath = 'app/src/components/constants/';
+
 // dev environment
 gulp.task('devENV', function () {
   return gulp.src('ENV.json')
     .pipe(gulpNgConfig('ENV', {environment: 'dev'}))
-    .pipe(gulp.dest('app/src/component/config/'))
-    .on('error', errorHandler);
-});
-
-var configPath = 'app/src/component/config/';
-
-// production environment
-gulp.task('productionENV', function () {
-  console.log(plugins);
-  return gulp.src('ENV.json')
-    .pipe(gulpNgConfig('ENV', {environment: 'production'}))
     .pipe(gulp.dest(configPath))
     .on('error', errorHandler);
 });
