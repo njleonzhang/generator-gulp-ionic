@@ -138,7 +138,12 @@ gulp.task('scripts', function () {
   // prepare angular template cache from html templates
   // (remember to change appName var to desired module name)
   var templateStream = gulp
-    .src('**/*.html', {cwd: 'app/src/'})
+    <% if(useJade){ %>
+      .src('**/*.jade', {cwd: 'app/src/'})
+      .pipe(plugins.pug())
+    <% } else{ %>
+      .src('**/*.html', {cwd: 'app/src/'})
+    <% } %>
     .pipe(plugins.angularTemplatecache('templates.js', {
       root: 'src/',
       module: appName,
