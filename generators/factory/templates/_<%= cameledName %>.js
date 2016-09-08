@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc service
@@ -12,12 +12,12 @@ angular.module('<%= scriptAppName %>')
     // Service logic
     // ...
 
-    var meaningOfLife = 42;
+    var meaningOfLife = 42
 
     // Public API here
     return {
       someMethod: function () {
-        return meaningOfLife;
+        return meaningOfLife
       }
-    };
-  });
+    }
+  })

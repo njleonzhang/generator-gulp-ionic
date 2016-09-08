@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc service
@@ -8,4 +8,4 @@
  * Value in the <%= scriptAppName %>.
  */
 angular.module('<%= scriptAppName %>')
-  .value('<%= cameledName %>', 42);
+  .value('<%= cameledName %>', 42)

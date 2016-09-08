@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * @ngdoc service
@@ -11,9 +11,9 @@ angular.module('<%= scriptAppName %>')
   .filter("<%= cameledName %>", () => {
     return function(input) {
       if (typeof(input) == "string") {
-        return new Date(input);
+        return new Date(input)
       } else {
-        return input;
+        return input
       }
     }
   })

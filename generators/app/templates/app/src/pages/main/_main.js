@@ -19,4 +19,4 @@ angular.module('<%= appName %>')
         templateUrl: 'src/pages/main/main.html',
         controller: 'mainCtrl'
       })
-  });
+  })

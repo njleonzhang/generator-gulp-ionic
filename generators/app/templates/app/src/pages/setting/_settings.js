@@ -22,5 +22,5 @@ angular.module('<%= appName %>')
             controller: 'settingCtrl'
           }
         }
-      });
-  });
+      })
+  })

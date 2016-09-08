@@ -11,16 +11,15 @@ angular.module('<%= appName %>', ['ionic', 'ngAnimate', 'ngCordova', 'ENV'])
 
       $ionicPlatform.ready(function() {
         // save to use plugins here
-      });
+      })
 
       // add possible global event handlers here
 
     }
   ])
 
-
   // config
   .config(function($urlRouterProvider) {
     // redirects to default route for undefined routes
-    $urlRouterProvider.otherwise('/app/home');
-  });
+    $urlRouterProvider.otherwise('/app/home')
+  })

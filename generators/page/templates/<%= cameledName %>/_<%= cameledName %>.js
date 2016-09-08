@@ -1,3 +1,4 @@
+'use strict'
 /**
  * @ngdoc service
  * @name <%= scriptAppName %>.<%= cameledName %>
@@ -24,4 +25,4 @@ angular.module('<%= scriptAppName %>')
           }
         }
       })
-  });
+  })

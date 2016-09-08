@@ -1,5 +1,4 @@
-'use strict';
-
+'use strict'
 /**
  * @ngdoc service
  * @name <%= scriptAppName %>.<%= cameledName %>
@@ -11,22 +10,22 @@ angular.module('<%= scriptAppName %>')
   .provider('<%= cameledName %>', () => {
 
     // Private variables
-    var salutation = 'Hello';
+    var salutation = 'Hello'
 
     // Private constructor
     function Greeter() {
       this.greet = function() {
-        return salutation;
-      };
+        return salutation
+      }
     }
 
     // Public API for configuration
     this.setSalutation = function(s) {
-      salutation = s;
-    };
+      salutation = s
+    }
 
     // Method for instantiating
     this.$get = function() {
-      return new Greeter();
-    };
-  });
+      return new Greeter()
+    }
+  })

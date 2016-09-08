@@ -7,20 +7,20 @@
 
 angular.module('<%= appName %>')
   .controller('homeCtrl', ($scope, example) => {
-    $scope.myHTML = null;
+    $scope.myHTML = null
 
     // just an example...
     $scope.fetchRandomText = function() {
       example.doSomethingAsync()
         .then(example.fetchSomethingFromServer)
         .then(function(response) {
-          $scope.myHTML = response.data.text;
+          $scope.myHTML = response.data.text
           // close pull to refresh loader
-          $scope.$broadcast('scroll.refreshComplete');
-        });
-    };
+          $scope.$broadcast('scroll.refreshComplete')
+        })
+    }
 
-    $scope.fetchRandomText();
+    $scope.fetchRandomText()
   })
   .config(($stateProvider, $urlRouterProvider) => {
     // Application routing
@@ -35,4 +35,4 @@ angular.module('<%= appName %>')
           }
         }
       })
-  });
+  })
