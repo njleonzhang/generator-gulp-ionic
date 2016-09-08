@@ -103,9 +103,9 @@ In this situation, you can use `-server or -s` option,
 
 ## inspired by
  [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme)  
- 
+
  [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
- 
+
  [generator-angular](https://github.com/yeoman/generator-angular).
 
 ## Getting To Know Yeoman
@@ -116,5 +116,11 @@ In this situation, you can use `-server or -s` option,
  * Feel free to [learn more about Yeoman](http://yeoman.io/).
 
 ## License
+
+## to support jade
+1. 问客户是否要用jade, 在bower.json或者package.json里记录这个信息
+
+2. 生成工程的时候根据是否support jade, 拿不同的模板.
+3. 执行directive和page的generator的时候也需要处理
 
 Apache-2.0 © [njleonzhang](https://github.com/njleonzhang)
