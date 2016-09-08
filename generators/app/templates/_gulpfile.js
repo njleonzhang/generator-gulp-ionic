@@ -95,6 +95,7 @@ gulp.task('styles', function () {
     .pipe(plugins.concat('bundle-temp.scss'))
     .pipe(plugins.plumber({errorHandler: function(error) {
       sassStream.emit('end')
+      console.log(error.message);
       notifier.notify({title: 'sass error', message: error.message});
     }}))
     .pipe(plugins.sass(options))
@@ -153,7 +154,8 @@ gulp.task('scripts', function () {
   return streamqueue({objectMode: true}, scriptStream, templateStream)
     .pipe(plugins.plumber({errorHandler: function(error) {
       this.emit('end')
-      notifier.notify({title: 'sass error', message: error.message});
+      console.log(error.message);
+      notifier.notify({title: 'js error', message: error.message});
     }}))
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
     .pipe(plugins.if(build, plugins.ngAnnotate()))

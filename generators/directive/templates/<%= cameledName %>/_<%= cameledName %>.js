@@ -6,7 +6,7 @@
  */
 
 angular.module('<%= scriptAppName %>')
-  .directive('<%= cameledName %>', function() {
+  .directive('<%= cameledName %>', () => {
     return {
       restrict: 'AE',
       scope: {},

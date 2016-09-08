@@ -8,7 +8,7 @@
  * Provider in the <%= scriptAppName %>.
  */
 angular.module('<%= scriptAppName %>')
-  .provider('<%= cameledName %>', function() {
+  .provider('<%= cameledName %>', () => {
 
     // Private variables
     var salutation = 'Hello';

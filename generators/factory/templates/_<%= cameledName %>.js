@@ -8,7 +8,7 @@
  * Factory in the <%= scriptAppName %>.
  */
 angular.module('<%= scriptAppName %>')
-  .factory('<%= cameledName %>', function () {
+  .factory('<%= cameledName %>', () => {
     // Service logic
     // ...
 

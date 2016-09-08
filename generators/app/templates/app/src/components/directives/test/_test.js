@@ -6,7 +6,7 @@
  */
 
 angular.module('<%= appName %>')
-  .directive('test', function() {
+  .directive('test', () => {
     return {
       restrict: 'AE',
       scope: {},

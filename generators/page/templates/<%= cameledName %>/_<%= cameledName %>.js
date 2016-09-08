@@ -1,8 +1,9 @@
 /**
- * @ngdoc function
- * @name <%= scriptAppName %>.<%= cameledName %>Ctrl
+ * @ngdoc service
+ * @name <%= scriptAppName %>.<%= cameledName %>
  * @description
- * # <%= cameledName %>Ctrl
+ * # <%= cameledName %>
+ * controller in <%= cameledName %>
  */
 
 angular.module('<%= scriptAppName %>')

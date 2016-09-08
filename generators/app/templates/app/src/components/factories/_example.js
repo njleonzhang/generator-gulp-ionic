@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name <%= appName %>.factory:example
+ * @name <%= appName %>.service:exampleService
  * @description
- * # example
+ * # exampleService
  */
 
 angular.module('<%= appName %>')
