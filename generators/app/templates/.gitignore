@@ -20,6 +20,8 @@
 node_modules/
 dist/
 bower_components/
-.tmp
+.tmp/
 platforms
-www
+www/
+ENV.js
+plugins/
