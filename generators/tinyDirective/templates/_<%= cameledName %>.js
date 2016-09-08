@@ -10,10 +10,7 @@ angular.module('<%= scriptAppName %>')
     return {
       restrict: 'AE',
       scope: {},
-      templateUrl: 'src/components/directives/<%= cameledName %>/<%= cameledName %>.html',
-
       link: (scope, elem, attr) => {
-
       }
     }
   })
