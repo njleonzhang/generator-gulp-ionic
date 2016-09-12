@@ -336,6 +336,9 @@ gulp.task('watchers', function () {
   gulp.watch('./bower.json', ['vendor']);
   gulp.watch('app/src/**/*.html', ['index']);
   gulp.watch('app/src/index.html', ['index']);
+  if(!server && !build) {
+    gulp.watch('ENV.json', ['devENV']);
+  }
   gulp.watch(targetDir + '/**')
     .on('change', plugins.livereload.changed)
     .on('error', errorHandler);
