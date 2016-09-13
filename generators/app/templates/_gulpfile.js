@@ -88,11 +88,12 @@ gulp.task('styles', function () {
   var options = build ? {style: 'compressed'} : {style: 'expanded'};
 
   var sassStream = gulp.src(['./app/src/**/*.scss'])
+    .pipe(plugins.sourcemaps.init())
     .pipe(plugins.order([
       'app/src/commonStyles/**/*.js',
       'app/src/**/*.scss'
     ]))
-    .pipe(plugins.concat('bundle-temp.scss'))
+    .pipe(plugins.concatSourcemap('bundle-temp.scss'))
     .pipe(plugins.plumber({errorHandler: function(error) {
       sassStream.emit('end')
       console.log(error.message);
@@ -116,10 +117,12 @@ gulp.task('styles', function () {
     });
 
   return series(ionicStream, sassStream)
+    .pipe(plugins.sourcemaps.init())
     .pipe(plugins.autoprefixer('last 1 Chrome version', 'last 3 iOS versions', 'last 3 Android versions'))
     .pipe(plugins.concat('main.css'))
     .pipe(plugins.if(build, plugins.stripCssComments()))
     .pipe(plugins.if(build && !emulate, plugins.rev()))
+    .pipe(plugins.sourcemaps.write('/'))
     .pipe(gulp.dest(path.join(targetDir, 'styles')))
     .on('error', errorHandler);
 });
