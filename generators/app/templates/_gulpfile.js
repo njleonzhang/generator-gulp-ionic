@@ -90,7 +90,7 @@ gulp.task('styles', function () {
   var sassStream = gulp.src(['./app/src/**/*.scss'])
     .pipe(plugins.sourcemaps.init())
     .pipe(plugins.order([
-      'app/src/commonStyles/**/*.js',
+      'app/src/commonStyles/**/*.scss',
       'app/src/**/*.scss'
     ]))
     .pipe(plugins.concatSourcemap('bundle-temp.scss'))
@@ -161,8 +161,8 @@ gulp.task('scripts', function () {
       notifier.notify({title: 'js error', message: error.message});
     }}))
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
-    .pipe(plugins.if(build, plugins.ngAnnotate()))
     .pipe(plugins.babel({presets: ['es2015']}))
+    .pipe(plugins.if(build, plugins.ngAnnotate()))
     .pipe(plugins.if(stripDebug, plugins.stripDebug()))
     .pipe(plugins.if(build, plugins.concat('app.js')))
     .pipe(plugins.if(build && !emulate, plugins.uglify()))
