@@ -11,6 +11,7 @@ angular.module('<%= scriptAppName %>')
     return {
       restrict: 'AE',
       scope: {},
+      template: '<span></span>',
       link: (scope, elem, attr) => {
       }
     }
