@@ -6,6 +6,7 @@ var generatorConfig = require('../generator-base');
 generatorConfig.writing = function () {
   this._processDirectory('', 'app/src/components/directives/',
     {
+      className: this.className,
       cameledName: this.componentName,
       scriptAppName: this._getScriptAppName()
     });

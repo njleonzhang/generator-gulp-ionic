@@ -15,6 +15,7 @@ module.exports = {
     this.argument('componentName', { type: String, required: true });
 
     this.componentName = _.camelize(this.componentName);
+    this.className = _.slugify(_.humanize(this.componentName));
   },
 
   _getScriptAppName: function() {
@@ -56,7 +57,7 @@ module.exports = {
         try{
           this.bulkCopy(src, dest);
         } catch (e) {
-          // if it's folder, skip the error 
+          // if it's folder, skip the error
           if (e.code !== 'EISDIR') {
             console.log(e);
           }
@@ -69,6 +70,7 @@ module.exports = {
     this._processDirectory('', 'app/src/components/',
       {
         cameledName: this.componentName,
+        className: this.className,
         scriptAppName: this._getScriptAppName()
       });
   }

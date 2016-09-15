@@ -8,6 +8,7 @@ generatorConfig.writing = function() {
     '',
     'app/src/pages/',
     {
+      className: this.className,
       cameledName: this.componentName,
       scriptAppName: this._getScriptAppName()
     });
