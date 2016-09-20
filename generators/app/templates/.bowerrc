@@ -1,0 +1,8 @@
+{
+  "ignoredDependencies": [
+    "angular",
+    "angular-animate",
+    "angular-sanitize",
+    "angular-ui-router"
+  ]
+}

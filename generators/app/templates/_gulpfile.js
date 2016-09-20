@@ -44,6 +44,7 @@ var run = args.run;
 var port = args.port;
 var stripDebug = !!args.stripDebug;
 var targetDir = path.resolve(build ? 'www' : '.tmp');
+var vendor = wiredep();
 
 var server = args.server;
 
@@ -84,22 +85,30 @@ gulp.task('clean', function (done) {
 
 // precompile .scss and concat with ionic.css
 gulp.task('styles', function () {
-
   var options = build ? {style: 'compressed'} : {style: 'expanded'};
+  var vendorScss = vendor.scss || [];
+  var vendorScssRelativePath = [];
 
-  var sassStream = gulp.src(['./app/src/**/*.scss'])
+  vendorScss.forEach(function(e) {
+    vendorScssRelativePath.push(path.relative(__dirname, e));
+  })
+
+  var sassStream = gulp.src(vendorScss.concat(['./app/src/**/*.scss']))
     .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.order([
+    .pipe(plugins.order(vendorScssRelativePath.concat([
+      'app/src/commonStyles/base/variables.scss',
+      'app/src/commonStyles/base/tools.scss',
       'app/src/commonStyles/**/*.scss',
       'app/src/**/*.scss'
-    ]))
+    ]), {base: '.'}))
     .pipe(plugins.concatSourcemap('bundle-temp.scss'))
     .pipe(plugins.plumber({errorHandler: function(error) {
       sassStream.emit('end')
-      console.log(error.message);
+      console.error(error.message);
       notifier.notify({title: 'sass error', message: error.message});
     }}))
     .pipe(plugins.sass(options))
+    .pipe(plugins.autoprefixer('last 1 Chrome version', 'last 3 iOS versions', 'last 3 Android versions'))
     .on('error', function (err) {
       console.log('err: ', err);
       beep();
@@ -118,7 +127,6 @@ gulp.task('styles', function () {
 
   return series(ionicStream, sassStream)
     .pipe(plugins.sourcemaps.init())
-    .pipe(plugins.autoprefixer('last 1 Chrome version', 'last 3 iOS versions', 'last 3 Android versions'))
     .pipe(plugins.concat('main.css'))
     .pipe(plugins.if(build, plugins.stripCssComments()))
     .pipe(plugins.if(build && !emulate, plugins.rev()))
@@ -151,13 +159,12 @@ gulp.task('scripts', function () {
 
   var scriptStream = gulp
     .src(['templates.js', 'app.js', '**/*.js'], {cwd: 'app/src'})
-
     .pipe(plugins.if(!build, plugins.changed(dest)));
 
   return streamqueue({objectMode: true}, scriptStream, templateStream)
     .pipe(plugins.plumber({errorHandler: function(error) {
       this.emit('end')
-      console.log(error.message);
+      console.error(error.message);
       notifier.notify({title: 'js error', message: error.message});
     }}))
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
@@ -223,9 +230,8 @@ gulp.task('jsHint', function (done) {
 
 // concatenate and minify vendor sources
 gulp.task('vendor', function () {
-  var vendorFiles = wiredep().js;
-
-  return gulp.src(vendorFiles)
+  var vendorJs = vendor.js;
+  return gulp.src(vendorJs)
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
     .pipe(plugins.concat('vendor.js'))
     .pipe(plugins.if(build && !emulate, plugins.uglify()))
@@ -270,7 +276,9 @@ gulp.task('index', ['jsHint', 'scripts'], function () {
       _inject(gulp.src('scripts/app*.js', {cwd: targetDir}), 'app'),
       _inject(_getAllScriptSources(), 'app')
     ))
-
+    .pipe(plugins.if(build,
+      plugins.htmlReplace({cordova: 'cordova.js'})
+    ))
     .pipe(gulp.dest(targetDir))
     .on('error', errorHandler);
 });
@@ -389,7 +397,6 @@ gulp.task('customizeEnv', function () {
 
 // our main sequence, with some conditional jobs depending on params
 gulp.task('default', function (done) {
-  console.log('build: ', build);
   runSequence(
     'clean',
     'iconfont',
