@@ -12,7 +12,7 @@ angular.module('<%= scriptAppName %>')
       restrict: 'AE',
       scope: {},
       template: '<span></span>',
-      link: (scope, elem, attr) => {
+      link(scope, elem, attr) {
       }
     }
   })

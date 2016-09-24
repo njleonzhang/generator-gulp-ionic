@@ -13,7 +13,7 @@ angular.module('<%= scriptAppName %>')
       scope: {},
       templateUrl: 'src/components/directives/<%= cameledName %>/<%= cameledName %>.html',
 
-      link: (scope, elem, attr) => {
+      link(scope, elem, attr) {
 
       }
     }

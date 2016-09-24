@@ -16,7 +16,7 @@ angular.module('<%= scriptAppName %>')
 
     // Public API here
     return {
-      someMethod: function () {
+      someMethod() {
         return meaningOfLife
       }
     }
