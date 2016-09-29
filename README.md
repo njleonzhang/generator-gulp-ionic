@@ -1,9 +1,8 @@
 # generator-gulp-ionic
 
-> Ionic generator organizes html, js and scss by feature, supports ES6, livereload, also provide service generator command.
+> May be the best Ionic1 generator. organizes html, js and scss by feature, supports ES6, livereload, also provide kinds of generators.
 
 ## Installation
-
 First, install [Yeoman](http://yeoman.io) and generator-gulp-ionic using  [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
@@ -17,95 +16,69 @@ Then generate your new project:
 yo gulp-ionic
 ```
 
-Generate your new service:
+## Generator for angular components
+`yo gulp-ionic:page [name]`
+`yo gulp-ionic:constant [name]`
+`yo gulp-ionic:directive [name]`
+`yo gulp-ionic:tinyDirective [name]`
+`yo gulp-ionic:service [name]`
+`yo gulp-ionic:factory [name]`
+`yo gulp-ionic:filter [name]`
+`yo gulp-ionic:provider [name]`
+`yo gulp-ionic:value [name]`
+`yo gulp-ionic:constant [name]`
 
-```bash
-yo gulp-ionic:service myService
-```
-
-Produces `src/app/scripts/services/myService.js`:
-
-```javascript
-angular.module('myMod').service('MyService', function () {
-  // ...
-});
-```
-
-You can also do `yo gulp-ionic:factory`, `yo gulp-ionic:provider`, `yo gulp-ionic:value`, and `yo gulp-ionic:constant` for other types of services.!
+Notice: `tinyDirective` is directive only has javascript file
 
 ## Usage of the generated project.
+
+### Architecture
+
 <div style="text-align: center">
 <img src="/assets/architecture.png" width="250">
 </div>
 
 * All source code is under `app` folder.
 For a page or directive, html, js and scss is organized in same folder.
-For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
 
+### Commands
 
-* For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme),
-except we add a gulp option `-server or -s`
+#### Prepare enviroment
+1. install dependencies
+in `zrsm-worker` folder, run: `cnpm istall && bower install`
 
-There is a file named `ENV.json` at the root folder, whose content should be like this:
+2. generate icon and splash
+`ionic resources`
 
-```
-    {
-      "dev": {
-        "ENVconfig": {
-          "serverBase": "0.0.0.0:8888"
-        }
-      },
-      "production": {
-        "ENVconfig": {
-          "serverBase": "http://hipsterjesus.com/"
-        }
-      }
-    }
-```
+3. install plugins according to package.json
+`npm run reset`
 
-A service is generated according to this json file.  
+#### Develop enviroment
+start a dev enviroment, run `gulp`
+* To indicate a special server, use `gulp -s [server:port]`
 
-```
-    angular.module("ENV", [])
-    .constant("ENVconfig", {"serverBase":"http://hipsterjesus.com/"});
+#### Deploy the app to device
+1. generate front-end code in folder `www`.
+  `npm run build-debug` (build with log and not uglify javascript)
+  `npm run build-release` (build without log and uglify javascript)
+    * To indicate a special server:  `-s server`
+    `npm run [build|release] -- -s 10.32.11.10:8080`
 
-```
+2. Deploy the app to device/simulator
+    * for android, `ionic run android`
+    * for ios, open the project by xcode, run the project to device or simulator (you can try to use `ionic run ios`, currently if we use this command, we encounter issues)
 
-If you start the server by command `gulp`, we consider you are in develop mode, `"dev"` property in the json file will be used to generate angular `ENVconfig` module.
-If you start the server by command `gulp -run, gulp -build`, we consider you are in release mode, `produttion` property in the json will be used to generate angular `ENVconfig` module.
+#### Release package
+1. `npm run build-release`
+2. generate package
+    * for android, `npm run release-android`
+    * for ios, open the project by xcode, build app, and upload to app store
 
-Of course, If you can revise `ENV.json` to your own config. But sometimes, we need to change `serverBase` frequently when we make some test.
-In this situation, you can use `-server or -s` option,
-
-* `gulp -s www.xxx.com`         // debug mode with special serverBase
-* `gulp -r -s www.xxx.com`      // production mode with special serverBase
-
-## steps to deploy the app to device
-1. build the app, which will generaor release app in folder`www`.
-
-  `gulp -b`
-
-2. install plugins according to package.json
-
-  `ionic state reset`
-
-3. generate icon and splash
-
-  `ionic resources`
-
-4. add android and ios project
-
-  `ionic platform add android|ios`
-
-5. build and deploy the app to device/simulator
-
-  `ionic run android|ios`
-
-## inspired by
+## Inspired by
  [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme)  
- 
+
  [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
- 
+
  [generator-angular](https://github.com/yeoman/generator-angular).
 
 ## Getting To Know Yeoman

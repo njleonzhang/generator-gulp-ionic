@@ -16,7 +16,15 @@
 .idea
 *.iws
 
+
 #Web
 node_modules/
 dist/
 bower_components/
+.tmp/
+platforms
+www/
+ENV.js
+plugins/
+test/
+.ENVTemplate.json
