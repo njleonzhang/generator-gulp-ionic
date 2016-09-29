@@ -18,14 +18,23 @@ yo gulp-ionic
 
 ## Generator for angular components
 `yo gulp-ionic:page [name]`
+
 `yo gulp-ionic:constant [name]`
+
 `yo gulp-ionic:directive [name]`
+
 `yo gulp-ionic:tinyDirective [name]`
+
 `yo gulp-ionic:service [name]`
+
 `yo gulp-ionic:factory [name]`
+
 `yo gulp-ionic:filter [name]`
+
 `yo gulp-ionic:provider [name]`
+
 `yo gulp-ionic:value [name]`
+
 `yo gulp-ionic:constant [name]`
 
 Notice: `tinyDirective` is directive only has javascript file
