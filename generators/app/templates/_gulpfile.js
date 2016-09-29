@@ -20,6 +20,7 @@ var gulpNgConfig = require('gulp-ng-config');
 var json = require('json-file');
 var series = require('stream-series');
 var notifier = require('node-notifier');
+var runTimestamp = Math.round(Date.now()/1000);
 
 /**
  * Parse arguments
@@ -29,16 +30,18 @@ var args = require('yargs')
   .alias('b', 'build')
   .alias('r', 'run')
   .alias('s', 'server')
+  // uglify or not when build, by default, it is uglified
   .alias('d', 'debug')
   // remove all debug messages (console.logs, alerts etc) from release build
-  .alias('release', 'strip-debug')
+  .alias('i', 'strip-debug')
   .default('build', false)
-  .default('debug', true)
+  .default('debug', false)
   .default('port', 9000)
   .default('strip-debug', false)
   .argv;
 
 var build = !!(args.build || args.emulate || args.run);
+var debug = args.debug;
 var emulate = args.emulate;
 var run = args.run;
 var port = args.port;
@@ -88,7 +91,6 @@ gulp.task('styles', function () {
   var options = build ? {style: 'compressed'} : {style: 'expanded'};
   var vendorScss = vendor.scss || [];
   var vendorScssRelativePath = [];
-
   vendorScss.forEach(function(e) {
     vendorScssRelativePath.push(path.relative(__dirname, e));
   })
@@ -170,9 +172,11 @@ gulp.task('scripts', function () {
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
     .pipe(plugins.babel({presets: ['es2015']}))
     .pipe(plugins.if(build, plugins.ngAnnotate()))
-    .pipe(plugins.if(stripDebug, plugins.stripDebug()))
+    .pipe(plugins.if(stripDebug, plugins.removeLogging({
+      methods: ['log']
+    })))
     .pipe(plugins.if(build, plugins.concat('app.js')))
-    .pipe(plugins.if(build && !emulate, plugins.uglify()))
+    .pipe(plugins.if(build && !emulate && !debug, plugins.uglify()))
     .pipe(plugins.if(build && !emulate, plugins.rev()))
     .pipe(plugins.if(build, plugins.sourcemaps.write('/')))
 
@@ -193,9 +197,7 @@ gulp.task('fonts', function () {
 
 // generate iconfont
 gulp.task('iconfont', function () {
-  return gulp.src('app/icons/*.svg', {
-      buffer: false
-    })
+  return gulp.src(['app/icons/*.svg'])
     .pipe(plugins.iconfontCss({
       fontName: 'ownIconFont',
       path: 'app/icons/own-icons-template.css',
@@ -203,7 +205,9 @@ gulp.task('iconfont', function () {
       fontPath: '../fonts/'
     }))
     .pipe(plugins.iconfont({
-      fontName: 'ownIconFont'
+      fontName: 'ownIconFont',
+      prependUnicode: true,
+      timestamp: runTimestamp,
     }))
     .pipe(gulp.dest(path.join(targetDir, 'fonts')))
     .on('error', errorHandler);
