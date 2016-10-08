@@ -236,11 +236,11 @@ gulp.task('jsHint', function (done) {
 gulp.task('vendor', function () {
   var vendorJs = vendor.js;
   return gulp.src(vendorJs)
-    .pipe(plugins.if(build, plugins.sourcemaps.init()))
+    .pipe(plugins.if(build && !debug, plugins.sourcemaps.init()))
     .pipe(plugins.concat('vendor.js'))
-    .pipe(plugins.if(build && !emulate, plugins.uglify()))
+    .pipe(plugins.if(build && !emulate && !debug, plugins.uglify()))
     .pipe(plugins.if(build && !emulate, plugins.rev()))
-    .pipe(plugins.if(build, plugins.sourcemaps.write('/')))
+    .pipe(plugins.if(build && !debug, plugins.sourcemaps.write('/')))
 
     .pipe(gulp.dest(targetDir))
 
