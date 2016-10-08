@@ -54,13 +54,17 @@ For a page or directive, html, js and scss is organized in same folder.
 
 #### Prepare enviroment
 1. install dependencies
-in `zrsm-worker` folder, run: `cnpm istall && bower install`
+in generated project folder, run:
+
+ `npm istall && bower install`
 
 2. generate icon and splash
-`ionic resources`
+
+ `ionic resources`
 
 3. install plugins according to package.json
-`npm run reset`
+
+ `npm run reset`
 
 #### Develop enviroment
 start a dev enviroment, run `gulp`
