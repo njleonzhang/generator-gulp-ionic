@@ -64,8 +64,8 @@
     "gulp": "./node_modules/.bin/gulp",
     "release-android": "cordova build android --release --buildConfig build.json",
     "reset": "ionic state reset",
-    "build-debug": "./helpers/build.js -- -d",
-    "build-release": "./helpers/build.js -- -i"
+    "build-debug": "./helpers/build.js -d",
+    "build-release": "./helpers/build.js -i"
   },
   "cordovaPlugins": [
     "cordova-plugin-device@1.1.3",
