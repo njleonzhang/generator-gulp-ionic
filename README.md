@@ -68,9 +68,13 @@ start a dev enviroment, run `gulp`
 
 #### Deploy the app to device
 1. generate front-end code in folder `www`.
-  `npm run build-debug` (build with log and not uglify javascript)
-  `npm run build-release` (build without log and uglify javascript)
-    * To indicate a special server:  `-s server`
+
+  * `npm run build-debug` (build with log and not uglify javascript)
+  
+  * `npm run build-release` (build without log and uglify javascript)
+  
+  * To indicate a special server:  `-s server`
+  
     `npm run [build|release] -- -s 10.32.11.10:8080`
 
 2. Deploy the app to device/simulator
