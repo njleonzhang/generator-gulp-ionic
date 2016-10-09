@@ -19,7 +19,7 @@ angular.module('<%= scriptAppName %>')
         url: '/<%= cameledName %>',
         cache: true,
         views: {
-          'viewContent': {
+          app: {
             templateUrl: 'src/pages/<%= cameledName %>/<%= cameledName %>.html',
             controller: '<%= cameledName %>Ctrl'
           }

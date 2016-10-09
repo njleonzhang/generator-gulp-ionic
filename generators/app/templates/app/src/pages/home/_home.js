@@ -29,7 +29,7 @@ angular.module('<%= appName %>')
         url: '/home',
         cache: true,
         views: {
-          'viewContent': {
+          app: {
             templateUrl: 'src/pages/home/home.html',
             controller: 'homeCtrl'
           }
