@@ -172,10 +172,11 @@ gulp.task('scripts', function () {
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
     .pipe(plugins.babel({presets: ['es2015']}))
     .pipe(plugins.if(build, plugins.ngAnnotate()))
+    .pipe(plugins.if(build, plugins.concat('app.js')))
+    .pipe(plugins.if(stripDebug, plugins.stripComments()))
     .pipe(plugins.if(stripDebug, plugins.removeLogging({
       methods: ['log']
     })))
-    .pipe(plugins.if(build, plugins.concat('app.js')))
     .pipe(plugins.if(build && !emulate && !debug, plugins.uglify()))
     .pipe(plugins.if(build && !emulate, plugins.rev()))
     .pipe(plugins.if(build, plugins.sourcemaps.write('/')))
