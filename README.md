@@ -79,7 +79,7 @@ start a dev enviroment, run `gulp`
   
   * To indicate a special server:  `-s server`
   
-    `npm run [build|release] -- -s 10.32.11.10:8080`
+    `npm run [build-debug|build-release] -- -s 10.32.11.10:8080`
 
 2. Deploy the app to device/simulator
     * for android, `ionic run android`
