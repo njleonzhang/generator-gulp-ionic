@@ -391,7 +391,8 @@ gulp.task('customizeEnv', function () {
   return gulp.src('.ENVTemplate.json')
     .pipe(plugins.jsonEditor({
       ENVconfig: {
-        serverBase: server
+        serverBase: server,
+        debug: true
       }
     }))
     .pipe(gulpNgConfig('ENV'))
