@@ -5,7 +5,7 @@
 ### Architecture
 
 <div style="text-align: center">
-<img src="/assets/architecture.png" width="250">
+<img src="https://cdn.rawgit.com/njleonzhang/generator-gulp-ionic/master/assets/architecture.png" width="250">
 </div>
 
 * All source code is under `app` folder.
