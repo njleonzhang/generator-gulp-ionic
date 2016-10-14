@@ -1,11 +1,9 @@
 # generator-gulp-ionic
 
-> This generator is inspired by [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme) and [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular). It has full function of [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), at the same time, has the project structure of [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular).
-
+> May be the best Ionic1 generator. organizes html, js and scss by feature, supports ES6, livereload, also provide kinds of generators.
 
 ## Installation
-
-First, install [Yeoman](http://yeoman.io) and generator-gulp-ionic using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
+First, install [Yeoman](http://yeoman.io) and generator-gulp-ionic using  [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
 
 ```bash
 npm install -g yo
@@ -14,55 +12,91 @@ npm install -g generator-gulp-ionic
 
 Then generate your new project:
 
-```bash
+```
 yo gulp-ionic
 ```
 
-## Usage of the generated project. 
+## Generator for angular components
+`yo gulp-ionic:page [name]`
 
-* For the structure of the generated project, check [project structure](https://github.com/Swiip/generator-gulp-angular/blob/master/docs/usage.md)
-* For gulp command of the generated project, it is basically same to [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme), 
-except we add a gulp option `-server or -s`
+`yo gulp-ionic:constant [name]`
 
-There is a file named `ENV.json` at the root folder, whose content should be like this:
+`yo gulp-ionic:directive [name]`
 
-```
-    {
-      "dev": {
-        "ENVconfig": {
-          "serverBase": "0.0.0.0:8888"
-        }
-      },
-      "production": {
-        "ENVconfig": {
-          "serverBase": "http://hipsterjesus.com/"
-        }
-      }
-    }
-```
+`yo gulp-ionic:tinyDirective [name]`
 
-A service is generated according to this json file.  
- 
-```
-    angular.module("ENV", [])
-    .constant("ENVconfig", {"serverBase":"http://hipsterjesus.com/"});
+`yo gulp-ionic:service [name]`
 
-```
+`yo gulp-ionic:factory [name]`
 
-If you start the server by command `gulp`, we consider you are in develop mode, `"dev"` property in the json file will be used to generate angular `ENVconfig` module.
-If you start the server by command `gulp -run, gulp -build`, we consider you are in release mode, `produttion` property in the json will be used to generate angular `ENVconfig` module.
+`yo gulp-ionic:filter [name]`
 
-Of course, If you can revise `ENV.json` to your own config. But sometimes, we need to change `serverBase` frequently when we make some test.
-In this situation, you can use `-server or -s` option,
+`yo gulp-ionic:provider [name]`
 
-* `gulp -s www.xxx.com`         // debug mode with special serverBase
-* `gulp -r -s www.xxx.com`      // production mode with special serverBase
+`yo gulp-ionic:value [name]`
 
+`yo gulp-ionic:constant [name]`
 
-### ionic plugin installation according to package.json
+Notice: `tinyDirective` is directive only has javascript file
 
-`ionic state reset`
+## Usage of the generated project.
 
+### Architecture
+
+<div style="text-align: center">
+<img src="/assets/architecture.png" width="250">
+</div>
+
+* All source code is under `app` folder.
+For a page or directive, html, js and scss is organized in same folder.
+
+### Commands
+
+#### Prepare enviroment
+1. install dependencies
+in generated project folder, run:
+
+ `npm istall && bower install`
+
+2. generate icon and splash
+
+ `ionic resources`
+
+3. install plugins according to package.json
+
+ `npm run reset`
+
+#### Develop enviroment
+start a dev enviroment, run `gulp`
+* To indicate a special server, use `gulp -s [server:port]`
+
+#### Deploy the app to device
+1. generate front-end code in folder `www`.
+
+  * `npm run build-debug` (build with log and not uglify javascript)
+
+  * `npm run build-release` (build without log and uglify javascript)
+
+  * To indicate a special server:  `-s server`
+
+    `npm run [build-debug|build-release] -- -s 10.32.11.10:8080`
+
+2. Deploy the app to device/simulator
+    * for android, `ionic run android`
+    * for ios, open the project by xcode, run the project to device or simulator (you can try to use `ionic run ios`, currently if we use this command, we encounter issues)
+
+#### Release package
+1. `npm run build-release`
+2. generate package
+    * for android, `npm run release-android`
+    * for ios, open the project by xcode, build app, and upload to app store
+
+## Inspired by
+ [generator-ionic-gulp](https://github.com/tmaximini/generator-ionic-gulp#readme)  
+
+ [generator-gulp-angular](https://github.com/Swiip/generator-gulp-angular)
+
+ [generator-angular](https://github.com/yeoman/generator-angular).
 
 ## Getting To Know Yeoman
 
@@ -74,11 +108,3 @@ In this situation, you can use `-server or -s` option,
 ## License
 
 Apache-2.0 © [njleonzhang](https://github.com/njleonzhang)
-
-
-[npm-image]: https://badge.fury.io/js/generator-gulp-ionic.svg
-[npm-url]: https://npmjs.org/package/generator-gulp-ionic
-[travis-image]: https://travis-ci.org//generator-gulp-ionic.svg?branch=master
-[travis-url]: https://travis-ci.org//generator-gulp-ionic
-[daviddm-image]: https://david-dm.org//generator-gulp-ionic.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org//generator-gulp-ionic
