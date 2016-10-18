@@ -25,3 +25,4 @@ platforms
 www/
 ENV.js
 plugins/
+.ENVTemplate.json

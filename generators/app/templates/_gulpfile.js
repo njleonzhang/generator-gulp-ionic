@@ -17,11 +17,12 @@ var merge = require('merge-stream');
 var ripple = require('ripple-emulator');
 var wiredep = require('wiredep');
 var gulpNgConfig = require('gulp-ng-config');
-var json = require('json-file');
 var series = require('stream-series');
 var notifier = require('node-notifier');
 var runTimestamp = Math.round(Date.now()/1000);
-
+var json = require('json-file');
+var fs = require('fs');
+var xml2js = require('xml2js');
 /**
  * Parse arguments
  */
@@ -80,6 +81,34 @@ var errorHandler = function (error) {
     plugins.util.log(error);
   }
 };
+
+
+function xmlFileToJs(filename, cb) {
+  var filepath = path.normalize(path.join(__dirname, filename));
+  fs.readFile(filepath, 'utf8', function(err, xmlStr) {
+    if (err) throw (err);
+    xml2js.parseString(xmlStr, {}, cb);
+  });
+}
+
+function jsToXmlFile(filename, obj, cb) {
+  var filepath = path.normalize(path.join(__dirname, filename));
+  var builder = new xml2js.Builder();
+  var xml = builder.buildObject(obj);
+  fs.writeFile(filepath, xml, cb);
+}
+var version;
+
+gulp.task('version', function() {
+  version = json.read(path.resolve(__dirname, './package.json')).get('version')
+  var configRPath = './config.xml';
+  xmlFileToJs(configRPath, function(error, data) {
+    var config = data;
+    config.widget.$.version = version;
+    config.widget.$['ios-CFBundleVersion'] = version;
+    jsToXmlFile(configRPath, config);
+  });
+})
 
 // clean target dir
 gulp.task('clean', function (done) {
@@ -170,7 +199,7 @@ gulp.task('scripts', function () {
       notifier.notify({title: 'js error', message: error.message});
     }}))
     .pipe(plugins.if(build, plugins.sourcemaps.init()))
-    .pipe(plugins.babel({presets: ['es2015']}))
+    .pipe(plugins.babel({presets: ['es2015'], compact: false}))
     .pipe(plugins.if(build, plugins.ngAnnotate()))
     .pipe(plugins.if(build, plugins.concat('app.js')))
     .pipe(plugins.if(stripDebug, plugins.stripComments()))
@@ -180,9 +209,7 @@ gulp.task('scripts', function () {
     .pipe(plugins.if(build && !emulate && !debug, plugins.uglify()))
     .pipe(plugins.if(build && !emulate, plugins.rev()))
     .pipe(plugins.if(build, plugins.sourcemaps.write('/')))
-
     .pipe(gulp.dest(dest))
-
     .on('error', errorHandler);
 });
 
@@ -352,9 +379,13 @@ gulp.task('watchers', function () {
   gulp.watch('./bower.json', ['vendor']);
   gulp.watch('app/src/**/*.html', ['index']);
   gulp.watch('app/src/index.html', ['index']);
+  gulp.watch('package.json', ['version']);
   if(!server && !build) {
-    gulp.watch('ENV.json', ['devENV']);
+    gulp.watch(['ENV.json', 'package.json'], ['devENV']);
+  } else if (!build && server) {
+    gulp.watch(['package.json'], ['customizeEnv']);
   }
+
   gulp.watch(targetDir + '/**')
     .on('change', plugins.livereload.changed)
     .on('error', errorHandler);
@@ -369,6 +400,13 @@ var configPath = 'app/src/components/constants/';
 // dev environment
 gulp.task('devENV', function () {
   return gulp.src('ENV.json')
+    .pipe(plugins.jsonEditor({
+      dev: {
+        ENVconfig: {
+          version: version
+        }
+      }
+    }))
     .pipe(gulpNgConfig('ENV', {environment: 'dev'}))
     .pipe(gulp.dest(configPath))
     .on('error', errorHandler);
@@ -378,6 +416,13 @@ gulp.task('devENV', function () {
 gulp.task('productionENV', function () {
   console.log(plugins);
   return gulp.src('ENV.json')
+    .pipe(plugins.jsonEditor({
+      production: {
+        ENVconfig: {
+          version: version
+        }
+      }
+    }))
     .pipe(gulpNgConfig('ENV', {environment: 'production'}))
     .pipe(gulp.dest(configPath))
     .on('error', errorHandler);
@@ -392,7 +437,8 @@ gulp.task('customizeEnv', function () {
     .pipe(plugins.jsonEditor({
       ENVconfig: {
         serverBase: server,
-        debug: true
+        debug: true,
+        version: version
       }
     }))
     .pipe(gulpNgConfig('ENV'))
@@ -406,6 +452,7 @@ gulp.task('default', function (done) {
   runSequence(
     'clean',
     'iconfont',
+    'version',
     [
       'fonts',
       'styles',
