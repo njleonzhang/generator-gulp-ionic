@@ -1,4 +1,3 @@
-'use strict'
 /**
  * @ngdoc service
  * @name <%= scriptAppName %>.<%= cameledName %>
@@ -12,7 +11,7 @@ angular.module('<%= scriptAppName %>')
 
   })
 
-  .config(($stateProvider, $urlRouterProvider) => {
+  .config(($stateProvider) => {
     // Application routing
     $stateProvider
       .state('app.<%= cameledName %>', {

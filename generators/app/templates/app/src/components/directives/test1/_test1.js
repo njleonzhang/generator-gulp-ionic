@@ -10,9 +10,9 @@ angular.module('<%= appName %>')
     return {
       restrict: 'AE',
       scope: {},
-      templateUrl: 'src/components/directives/test/test.html',
+      templateUrl: 'src/components/directives/test1/test1.html',
 
-      link: function(scope, elem, attr) {
+      link(scope, elem, attr) {
 
       }
     }

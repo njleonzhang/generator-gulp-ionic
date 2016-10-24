@@ -6,11 +6,11 @@
  */
 
 angular.module('<%= appName %>')
-  .controller('mainCtrl', function($scope) {
+  .controller('mainCtrl', ($scope) => {
 
   })
 
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(($stateProvider) => {
     // Application routing
     $stateProvider
       .state('app', {

@@ -9,7 +9,6 @@ var beep = require('beepbeep');
 var express = require('express');
 var path = require('path');
 var open = require('open');
-var stylish = require('jshint-stylish');
 var connectLr = require('connect-livereload');
 var streamqueue = require('streamqueue');
 var runSequence = require('run-sequence');
@@ -251,11 +250,18 @@ gulp.task('images', function () {
 
 // lint js sources based on .jshintrc ruleset
 gulp.task('jsHint', function (done) {
+  var eslint = plugins.eslint;
   return gulp
-    .src('app/src/**/*.js')
-    //.pipe(plugins.jshint())
-    //.pipe(plugins.jshint.reporter(stylish))
-
+    .src(['app/src/**/*.js', '!app/src/components/constants/ENV.js'])
+    .pipe(plugins.plumber({errorHandler: function(error) {
+      notifier.notify({title: 'eslint error', message: error.message});
+    }}))
+    .pipe(eslint())
+    // eslint.format() outputs the lint results to the console.
+    // Alternatively use eslint.formatEach() (see Docs).
+    .pipe(eslint.format())
+    // To have the process exit with an error code (1) on
+    // lint error, return the stream and pipe to failAfterError last.
     .on('error', errorHandler);
   done();
 });

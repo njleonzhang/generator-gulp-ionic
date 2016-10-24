@@ -1,4 +1,3 @@
-'use strict'
 /**
  * @ngdoc service
  * @name <%= scriptAppName %>.<%= cameledName %>
@@ -7,10 +6,9 @@
  * Provider in the <%= scriptAppName %>.
  */
 angular.module('<%= scriptAppName %>')
-  .provider('<%= cameledName %>', () => {
-
+  .provider('<%= cameledName %>', function() {
     // Private variables
-    var salutation = 'Hello'
+    let salutation = 'Hello'
 
     // Private constructor
     function Greeter() {

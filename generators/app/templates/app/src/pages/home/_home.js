@@ -13,7 +13,7 @@ angular.module('<%= appName %>')
     $scope.fetchRandomText = function() {
       example.doSomethingAsync()
         .then(example.fetchSomethingFromServer)
-        .then(function(response) {
+        .then((response) => {
           $scope.myHTML = response.data.text
           // close pull to refresh loader
           $scope.$broadcast('scroll.refreshComplete')
@@ -22,7 +22,7 @@ angular.module('<%= appName %>')
 
     $scope.fetchRandomText()
   })
-  .config(($stateProvider, $urlRouterProvider) => {
+  .config(($stateProvider) => {
     // Application routing
     $stateProvider
       .state('app.home', {

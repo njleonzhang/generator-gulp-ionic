@@ -1,5 +1,3 @@
-'use strict'
-
 /**
  * @ngdoc service
  * @name <%= scriptAppName %>.<%= cameledName %>
@@ -12,7 +10,7 @@ angular.module('<%= scriptAppName %>')
     // Service logic
     // ...
 
-    var meaningOfLife = 42
+    let meaningOfLife = 42
 
     // Public API here
     return {
