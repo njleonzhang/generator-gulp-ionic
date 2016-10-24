@@ -21,7 +21,6 @@ module.exports = {
     'arrow-body-style': 0,
     'space-before-function-paren': [2, 'never'],
     'new-cap': 0,
-    // 需要打开
     'no-console': 0,
     'no-param-reassign': 0,
     'semi': [2, 'never'],
