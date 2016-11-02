@@ -11,7 +11,7 @@
   "files": [
     "generators/app",
     "generators/constant",
-    "generators/directive"
+    "generators/directive",
     "generators/factory",
     "generators/filter",
     "generators/page",

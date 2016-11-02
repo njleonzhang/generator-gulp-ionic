@@ -28,3 +28,4 @@ ENV.js
 plugins/
 test/
 .ENVTemplate.json
+npm-debug.log
