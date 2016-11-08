@@ -14,9 +14,8 @@ module.exports = yeoman.Base.extend({
   //
   _processDirectory: function(source, destination, data) {
     var root = path.join(this.sourceRoot(), source);
-    var files = glob.sync('**/*.*', { dot: true, cwd: root });
+    var files = glob.sync('**/*.*', {dot: true, cwd: root});
     files.push('helpers/emulateios');
-    files.push('.gitignore');
 
     for (var i = 0; i < files.length; i++) {
       var f = files[i];
@@ -38,7 +37,7 @@ module.exports = yeoman.Base.extend({
   prompting: function () {
     // Have Yeoman greet the user.
     this.log(yosay(
-      'Welcome to the cat\'s pajamas ' + chalk.red('generator-gulp-ionic') + ' generator!'
+      'Welcome to the leon\'s generator ' + chalk.red('generator-gulp-ionic') + ' generator!'
     ));
 
     var prompts = [

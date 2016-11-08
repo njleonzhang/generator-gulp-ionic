@@ -1,7 +1,7 @@
 {
   "name": "generator-gulp-ionic",
-  "version": "1.2.1",
-  "description": "a yoeman generator inspired by generator-ionic-gulp and generator-gulp-angular, ionic generator with gulp-angular project structure",
+  "version": "1.2.5",
+  "description": "May be the best Ionic1 generator. organizes html, js and scss by feature, supports ES6, livereload, also provide kinds of generators.",
   "homepage": "https://github.com/njleonzhang/generator-gulp-ionic",
   "author": {
     "name": "njleonzhang",
