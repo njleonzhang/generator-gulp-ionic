@@ -56,7 +56,7 @@ For a page or directive, html, js and scss is organized in same folder.
 1. install dependencies
 in generated project folder, run:
 
- `npm istall && bower install`
+ `npm install && bower install`
 
 2. generate icon and splash
 
